@@ -4,10 +4,11 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   background-color: #09090c;
   color: white;
+  overflow: auto;
 }
 
 #header {
@@ -28,22 +29,39 @@ body {
 
 .countdown-container {
   display: flex;
-  font-size: 2em;
+  font-size: 2rem;
   justify-content: center;
   align-items: center;
 }
 
 .countdown-item {
-  padding: 0.5em;
-  margin: 0 0.2em;
-  background-color: #292828;
-  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #212121;
+  padding: 14px;
   border-radius: 5px;
 }
 
 .countdown-separator {
-  margin: 0 0.2em;
-  color: #adadad;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.countdown-labels {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+}
+
+.countdown-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #6b7280;
+  font-weight: 600;
 }
 
 #wrapper {
@@ -53,24 +71,46 @@ body {
   border: 1px solid #6b33ff;
 }
 
-/* Media Queries for responsiveness */
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 0.9rem;
+  }
 
-@media only screen and (max-width: 600px) {
   #header h1 {
-    font-size: 1.5em;
+    font-size: 1.2rem;
+  }
+
+  #header p {
+    font-size: 0.8rem;
   }
 
   .countdown-container {
-    font-size: 1.5em;
+    font-size: 1.5rem;
+  }
+
+  #wrapper {
+    padding: 0.5rem;
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 0.8rem;
+  }
+
   #header h1 {
-    font-size: 1.2em;
+    font-size: 1rem;
+  }
+
+  #header p {
+    font-size: 0.7rem;
   }
 
   .countdown-container {
-    font-size: 1.2em;
+    font-size: 1.2rem;
+  }
+
+  #wrapper {
+    padding: 0.3rem;
   }
 }

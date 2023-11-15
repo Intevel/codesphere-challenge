@@ -79,7 +79,7 @@ function formatDateForICS(date) {
   const minutes = pad(date.getUTCMinutes());
   const seconds = pad(date.getUTCSeconds());
 
-  return `${year}${month}${day}T${hours}${minutes}${seconds}00Z`;
+  return `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
 }
 
 function generateICS(event) {

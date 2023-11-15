@@ -9,12 +9,14 @@ body {
   background-color: #09090c;
   color: white;
   overflow: hidden;
+  cursor: none;
 }
 
 #header {
   display: flex;
   flex-direction: column;
   text-align: center;
+  z-index: 2;
   justify-content: center;
 }
 
@@ -32,6 +34,7 @@ body {
   font-size: 2rem;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 .countdown-item {
@@ -115,7 +118,6 @@ body {
   }
 }
 
-
 .add-to-calendar-button {
   display: inline-flex;
   align-items: center;
@@ -123,13 +125,20 @@ body {
   background-color: #6b33ff;
   color: white;
   font-weight: 600;
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   padding: 0.5rem;
   margin-top: 1rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out; 
 }
 
 .add-to-calendar-button:hover {
   background-color: #5a24c4;
+}
+
+#radialGradient {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }

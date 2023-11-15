@@ -18,6 +18,7 @@
   </head>
   <body>
     <script src="script.js"></script>
+
     <div id="header">
       <h1>CodeSphere Countdown Challenge 🎃</h1>
       <p>
@@ -25,6 +26,7 @@
         at 00:00:00 UTC.
       </p>
     </div>
+    <div id="radialGradient"></div>
     <div id="wrapper">
       <div class="countdown-container">
         <div id="days" class="countdown-item">00</div>
@@ -47,5 +49,23 @@
         Add to calendar
       </button>
     </div>
+    <script>
+      // Get the div element for the radial gradient
+      const radialGradient = document.getElementById("radialGradient");
+      console.log(radialGradient);
+
+      // Function to handle mouse move events
+      function handleMouseMove(event) {
+        // Get mouse cursor position
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+
+        // Set the radial gradient as the background
+        radialGradient.style.background = `radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(90, 36, 196, 0.4) 0%, rgba(90, 36, 196, 0) 20%)`;
+      }
+
+      // Add event listener for mouse move events
+      window.addEventListener("mousemove", handleMouseMove);
+    </script>
   </body>
 </html>

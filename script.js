@@ -46,7 +46,7 @@ function addToCalendar() {
   const icsContent = generateICS(event);
 
   // Create a Blob with the content
-  const blob = new Blob([icsContent], { type: "text/calendar" });
+  const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
 
   // Create a download link and trigger the click event
   const link = document.createElement("a");

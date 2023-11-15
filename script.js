@@ -2,12 +2,27 @@ const countDownDate = new Date("Nov 30, 2023 12:00:00");
 
 document.addEventListener("DOMContentLoaded", function () {
   const radialGradient = document.getElementById("radialGradient");
+  const textContainer = document.getElementById("textContainer");
+  const radius = 400;
 
   function handleMouseMove(event) {
     const mouseX = event.clientX;
     const mouseY = event.clientY;
 
     radialGradient.style.background = `radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(90, 36, 196, 0.4) 0%, rgba(90, 36, 196, 0) 20%)`;
+
+    const textRect = textContainer.getBoundingClientRect();
+    const textCenterX = textRect.left + textRect.width / 2;
+    const textCenterY = textRect.top + textRect.height / 2;
+    const distance = Math.sqrt(
+      (mouseX - textCenterX) ** 2 + (mouseY - textCenterY) ** 2
+    );
+
+    const minOpacity = 0.1;
+    const opacity =
+      1 - (Math.min(distance, radius) / radius) * (1 - minOpacity);
+
+    textContainer.style.opacity = opacity;
   }
 
   window.addEventListener("mousemove", handleMouseMove);

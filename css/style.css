@@ -121,16 +121,18 @@ body {
 }
 
 .add-to-calendar-button {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   background-color: #6b33ff;
   color: white;
   font-weight: 600;
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.8rem;
   margin-top: 1rem;
   cursor: pointer;
+  border: none;
 }
 
 .add-to-calendar-button:hover {
@@ -143,4 +145,20 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 1;
+}
+
+.text-container {
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+}
+
+.highlighted {
+  color: #8558ff !important;
+  text-decoration: none;
 }

@@ -114,3 +114,22 @@ body {
     padding: 0.3rem;
   }
 }
+
+
+.add-to-calendar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6b33ff;
+  color: white;
+  font-weight: 600;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; 
+}
+
+.add-to-calendar-button:hover {
+  background-color: #5a24c4;
+}

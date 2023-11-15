@@ -8,7 +8,7 @@ body {
   margin: 0;
   background-color: #09090c;
   color: white;
-  overflow: auto;
+  overflow: hidden;
 }
 
 #header {

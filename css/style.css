@@ -10,6 +10,8 @@ body {
   color: white;
   overflow: hidden;
   cursor: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 #header {

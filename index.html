@@ -49,23 +49,5 @@
         Add to calendar
       </button>
     </div>
-    <script>
-      // Get the div element for the radial gradient
-      const radialGradient = document.getElementById("radialGradient");
-      console.log(radialGradient);
-
-      // Function to handle mouse move events
-      function handleMouseMove(event) {
-        // Get mouse cursor position
-        const mouseX = event.clientX;
-        const mouseY = event.clientY;
-
-        // Set the radial gradient as the background
-        radialGradient.style.background = `radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(90, 36, 196, 0.4) 0%, rgba(90, 36, 196, 0) 20%)`;
-      }
-
-      // Add event listener for mouse move events
-      window.addEventListener("mousemove", handleMouseMove);
-    </script>
   </body>
 </html>

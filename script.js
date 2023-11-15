@@ -1,6 +1,17 @@
 const countDownDate = new Date("Nov 30, 2023 12:00:00");
 
 document.addEventListener("DOMContentLoaded", function () {
+  const radialGradient = document.getElementById("radialGradient");
+
+  function handleMouseMove(event) {
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+
+    radialGradient.style.background = `radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(90, 36, 196, 0.4) 0%, rgba(90, 36, 196, 0) 20%)`;
+  }
+
+  window.addEventListener("mousemove", handleMouseMove);
+
   function updateCountdown() {
     const now = new Date().getTime();
 
@@ -40,27 +51,18 @@ function addToCalendar() {
     location: "Online",
   };
 
-  console.log(event);
-
-  // Generate the iCalendar (.ics) content
   const icsContent = generateICS(event);
-
-  // Create a Blob with the content
-  const blob = new Blob([icsContent], { type: "text/calendar" });
 
   const dataUri =
     "data:text/calendar;charset=utf-8," + encodeURIComponent(icsContent);
 
-  // Create a download link and set the href attribute
   const link = document.createElement("a");
   link.href = dataUri;
   link.download = "event.ics";
 
-  // Append the link to the document and trigger the click event
   document.body.appendChild(link);
   link.click();
 
-  // Remove the link from the document
   document.body.removeChild(link);
 }
 
@@ -73,7 +75,7 @@ function formatDateForICS(date) {
   }
 
   const year = date.getUTCFullYear();
-  const month = pad(date.getUTCMonth() + 1); // Months are zero-indexed
+  const month = pad(date.getUTCMonth() + 1);
   const day = pad(date.getUTCDate());
   const hours = pad(date.getUTCHours());
   const minutes = pad(date.getUTCMinutes());

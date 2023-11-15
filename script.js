@@ -48,11 +48,18 @@ function addToCalendar() {
   // Create a Blob with the content
   const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
 
-  // Create a download link and trigger the click event
-  const link = document.createElement("a");
-  link.href = window.URL.createObjectURL(blob);
-  link.download = "event.ics";
-  link.click();
+  if (window.navigator.msSaveOrOpenBlob) {
+    // For IE and Edge
+    window.navigator.msSaveOrOpenBlob(blob, "event.ics");
+  } else {
+    // For other browsers, including Safari
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute("download", "event.ics");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 }
 
 function formatDateForICS(date) {

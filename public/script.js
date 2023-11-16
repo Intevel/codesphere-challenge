@@ -1,5 +1,6 @@
 const countDownDate = new Date("Nov 30, 2023 12:00:00");
 let ntpServerTime;
+let x;
 
 async function fetchNTPServerTime() {
   const ntpServerUrl = "/getDateTime";
@@ -10,6 +11,7 @@ async function fetchNTPServerTime() {
   if (ntpResponse.dateTime) {
     ntpServerTime = new Date(ntpResponse.dateTime);
   }
+  return;
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -18,31 +20,31 @@ document.addEventListener("DOMContentLoaded", async function () {
   window.addEventListener("mousemove", handleMouseMove);
 
   function updateCountdown() {
-    const now = ntpServerTime ? ntpServerTime.getTime() : Date.now();
+    let now = ntpServerTime ? ntpServerTime.getTime() : Date.now();
+    let distance = countDownDate.getTime() - now;
 
-    const distance = countDownDate.getTime() - now;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor(
       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById("days").innerHTML = formatTime(days);
-    document.getElementById("hours").innerHTML = formatTime(hours);
-    document.getElementById("minutes").innerHTML = formatTime(minutes);
-    document.getElementById("seconds").innerHTML = formatTime(seconds);
+    document.getElementById("days").innerText = formatTime(days);
+    document.getElementById("hours").innerText = formatTime(hours);
+    document.getElementById("minutes").innerText = formatTime(minutes);
+    document.getElementById("seconds").innerText = formatTime(seconds);
+
+    ntpServerTime.setSeconds(ntpServerTime.getSeconds() + 1);
 
     if (distance < 0) {
       clearInterval(x);
-      document.getElementById("countdown").innerHTML = "EXPIRED";
+      document.getElementById("countdown").innerText = "EXPIRED";
     }
   }
 
   updateCountdown();
-
-  const x = setInterval(updateCountdown, 1000);
+  x = setInterval(updateCountdown, 1000);
 });
 
 function handleMouseMove(event) {

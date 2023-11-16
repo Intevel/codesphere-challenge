@@ -1,7 +1,10 @@
+// Init global variables
 const countDownDate = new Date("Nov 30, 2023 12:00:00");
 let ntpServerTime;
-let x;
+let interval;
 
+
+// Fetch the time using Network Time Protocol 
 async function fetchNTPServerTime() {
   const ntpServerUrl = "/getDateTime";
 
@@ -11,14 +14,17 @@ async function fetchNTPServerTime() {
   if (ntpResponse.dateTime) {
     ntpServerTime = new Date(ntpResponse.dateTime);
   }
-  return;
 }
 
+// init the countdown
 document.addEventListener("DOMContentLoaded", async function () {
+  // fetch the time once
   await fetchNTPServerTime();
 
+  // add mousemove handler for my fancy glow effect :D
   window.addEventListener("mousemove", handleMouseMove);
 
+  // function to calculate the time remaining and update the DOM
   function updateCountdown() {
     let now = ntpServerTime ? ntpServerTime.getTime() : Date.now();
     let distance = countDownDate.getTime() - now;
@@ -35,21 +41,26 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.getElementById("minutes").innerText = formatTime(minutes);
     document.getElementById("seconds").innerText = formatTime(seconds);
 
+    // increment the ntp time by 1 second
     ntpServerTime.setSeconds(ntpServerTime.getSeconds() + 1);
 
+    // If the count down is finished, clear the interval to stop the countdown
     if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("countdown").innerText = "EXPIRED";
+      clearInterval(interval);
     }
   }
 
+  // call the updateCountdown function every 1 second
   updateCountdown();
-  x = setInterval(updateCountdown, 1000);
+  interval = setInterval(updateCountdown, 1000);
 });
 
+// glow effect
 function handleMouseMove(event) {
   const radialGradient = document.getElementById("radialGradient");
   const textContainer = document.getElementById("textContainer");
+
+  // radius in px near the submitted note 
   const radius = 400;
 
   const mouseX = event.clientX;
@@ -57,6 +68,8 @@ function handleMouseMove(event) {
 
   radialGradient.style.background = `radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(90, 36, 196, 0.4) 0%, rgba(90, 36, 196, 0) 20%)`;
 
+  
+  // calculate the opacity of the text
   const textRect = textContainer.getBoundingClientRect();
   const textCenterX = textRect.left + textRect.width / 2;
   const textCenterY = textRect.top + textRect.height / 2;
@@ -70,17 +83,21 @@ function handleMouseMove(event) {
   textContainer.style.opacity = opacity;
 }
 
+// format the time to have a leading zero if the time is less than 10
 function formatTime(time) {
   return time < 10 ? "0" + time : time;
 }
 
+// add to calendar button functionality
 function addToCalendar() {
+  // construct event
   const event = {
     title: "CodeSphere Countdown Challenge 🎃",
     date: countDownDate,
     location: "Online",
   };
 
+  // generate ics file and download it
   const icsContent = generateICS(event);
 
   const dataUri =
@@ -96,6 +113,7 @@ function addToCalendar() {
   document.body.removeChild(link);
 }
 
+// helper function to format the date for the ics file
 function formatDateForICS(date) {
   function pad(number) {
     if (number < 10) {
@@ -114,6 +132,7 @@ function formatDateForICS(date) {
   return `${year}${month}${day}T${hours}${minutes}${seconds}Z`;
 }
 
+// helper function to generate the ics file
 function generateICS(event) {
   return `BEGIN:VCALENDAR
 VERSION:2.0

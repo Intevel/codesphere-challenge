@@ -1,10 +1,15 @@
-const countDownDate = new Date("Nov 30, 2023 12:00:00");
+// Specify the date of the event using a simple Date object
+const countDownDate = new Date("Dez 24, 2023 00:00:00 UTC");
 
+// Wait for the DOM to be loaded before doing anything with the page elements to ensure they are available
 document.addEventListener("DOMContentLoaded", function () {
+  // Get the elements we need to manipulate
   const radialGradient = document.getElementById("radialGradient");
   const textContainer = document.getElementById("textContainer");
+  // The radius in px to calculate the opacity of the "submitted" text
   const radius = 400;
 
+  // Handle the mouse move event to update the radial gradient and the opacity of the submitted text
   function handleMouseMove(event) {
     const mouseX = event.clientX;
     const mouseY = event.clientY;
@@ -25,28 +30,25 @@ document.addEventListener("DOMContentLoaded", function () {
     textContainer.style.opacity = opacity;
   }
 
+  // Add the event listener to the window to handle the mouse move event
   window.addEventListener("mousemove", handleMouseMove);
 
   function updateCountdown() {
-    const now = new Date().getTime();
-
-    const distance = countDownDate.getTime() - now;
-
+    const now = Date.now();
+    const distance = countDownDate - now;
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / 1000 / 60) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
 
-    document.getElementById("days").innerHTML = formatTime(days);
-    document.getElementById("hours").innerHTML = formatTime(hours);
-    document.getElementById("minutes").innerHTML = formatTime(minutes);
-    document.getElementById("seconds").innerHTML = formatTime(seconds);
+    document.getElementById("days").textContent = formatTime(days);
+    document.getElementById("hours").textContent = formatTime(hours);
+    document.getElementById("minutes").textContent = formatTime(minutes);
+    document.getElementById("seconds").textContent = formatTime(seconds);
 
     if (distance < 0) {
       clearInterval(x);
-      document.getElementById("countdown").innerHTML = "EXPIRED";
+      document.getElementById("countdown").textContent = "EXPIRED";
     }
   }
 

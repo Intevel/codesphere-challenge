@@ -1,5 +1,5 @@
 // Init global variables
-const countDownDate = new Date("Dez 24, 2023 12:00:00");
+const countDownDate = new Date("Dec 24, 2023 12:00:00");
 let ntpServerTime;
 let interval;
 

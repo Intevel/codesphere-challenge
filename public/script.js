@@ -1,10 +1,9 @@
 // Init global variables
-const countDownDate = new Date("Nov 30, 2023 12:00:00");
+const countDownDate = new Date("Dez 24, 2023 12:00:00");
 let ntpServerTime;
 let interval;
 
-
-// Fetch the time using Network Time Protocol 
+// Fetch the time using Network Time Protocol
 async function fetchNTPServerTime() {
   const ntpServerUrl = "/getDateTime";
 
@@ -60,7 +59,7 @@ function handleMouseMove(event) {
   const radialGradient = document.getElementById("radialGradient");
   const textContainer = document.getElementById("textContainer");
 
-  // radius in px near the submitted note 
+  // radius in px near the submitted note
   const radius = 400;
 
   const mouseX = event.clientX;
@@ -68,7 +67,6 @@ function handleMouseMove(event) {
 
   radialGradient.style.background = `radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(90, 36, 196, 0.4) 0%, rgba(90, 36, 196, 0) 20%)`;
 
-  
   // calculate the opacity of the text
   const textRect = textContainer.getBoundingClientRect();
   const textCenterX = textRect.left + textRect.width / 2;

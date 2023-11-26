@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    />
+    <title>Countdown</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <script src="script.js"></script>
+
+    <div id="textContainer" class="text-container">
+      <p id="submittedBy">Made with 💜 by <a href="https://github.com/intevel" class="highlighted">Conner</a></p>
+    </div>
+
+    <div id="header">
+      <h1>CodeSphere Countdown Challenge 🎃</h1>
+      <p>
+        This is a countdown timer that counts down to the 24st of December 2023
+        at 12:00:00.
+      </p>
+    </div>
+    <div id="radialGradient"></div>
+    <div id="wrapper">
+      <div class="countdown-container">
+        <div id="days" class="countdown-item">00</div>
+        <div class="countdown-separator">:</div>
+        <div id="hours" class="countdown-item">00</div>
+        <div class="countdown-separator">:</div>
+        <div id="minutes" class="countdown-item">00</div>
+        <div class="countdown-separator">:</div>
+        <div id="seconds" class="countdown-item">00</div>
+      </div>
+      <div class="countdown-labels">
+        <div class="countdown-label">Days</div>
+        <div class="countdown-label">Hours</div>
+        <div class="countdown-label">Minutes</div>
+        <div class="countdown-label">Seconds</div>
+      </div>
+    </div>
+    <div>
+      <button onclick="addToCalendar()" class="add-to-calendar-button">
+        Add to calendar
+      </button>
+    </div>
+  </body>
+</html>
